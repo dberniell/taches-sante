@@ -6,6 +6,8 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use App\Controller\ReadUserTasks;
 
 /**
  * A user.
@@ -15,7 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
  *     "get_tasks"={
  *         "method"="GET",
  *         "path"="/users/{id}/tasks",
- *         "controller"=ReadUSerTasks::class,
+ *         "controller"=ReadUserTasks::class,
  *     }
  * })
  *
@@ -42,6 +44,7 @@ class User
     /**
      * @var \DateTimeInterface The date of creation of this user.
      *
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
     private $created_at;
@@ -49,6 +52,7 @@ class User
     /**
      * @var \DateTimeInterface The date of updating of this user.
      *
+     * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
      */
     private $updated_at;

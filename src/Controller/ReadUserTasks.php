@@ -4,9 +4,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Entity\Task;
 use App\Repository\TaskRepository;
-use Doctrine\Common\Collections\Collection;
 
 class ReadUserTasks
 {
@@ -17,7 +15,7 @@ class ReadUserTasks
         $this->taskRepository = $taskRepository;
     }
 
-    public function __invoke(User $data): Collection
+    public function __invoke(User $data): array
     {
         $tasks = $this->taskRepository->getTasksOfUser($data);
 

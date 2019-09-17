@@ -6,6 +6,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * A task.
@@ -29,8 +30,7 @@ class Task
     /**
      * @var int The user_id of this task.
      *
-     * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\Column
      */
     private $user_id;
 
@@ -58,6 +58,7 @@ class Task
     /**
      * @var \DateTimeInterface The date of creation of this task.
      *
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
     private $created_at;
@@ -65,6 +66,7 @@ class Task
     /**
      * @var \DateTimeInterface The date of updating of this task.
      *
+     * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
      */
     private $updated_at;

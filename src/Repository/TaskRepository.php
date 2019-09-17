@@ -17,11 +17,11 @@ class TaskRepository extends ServiceEntityRepository
 
     public function getTasksOfUser(User $user)
     {
-        $queryBuilder = $this->createQueryBuilder('b');
+        $queryBuilder = $this->createQueryBuilder('a');
         $query = $queryBuilder->select('b')
             ->from(Task::class, 'b')
-            ->where('b.id_user = :id_user')
-            ->setParameter('id_user', $user->getId())
+            ->where('b.user_id = :userId')
+            ->setParameter('userId', $user->getId())
             ->getQuery();
 
         return $query->execute();
