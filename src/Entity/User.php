@@ -10,7 +10,14 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * A user.
  *
- * @ApiResource()
+ * @ApiResource(itemOperations={
+ *     "get",
+ *     "get_tasks"={
+ *         "method"="GET",
+ *         "path"="/users/{id}/tasks",
+ *         "controller"=ReadUSerTasks::class,
+ *     }
+ * })
  *
  * @ORM\Entity
  */
