@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Taches Santé
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+      <ion-title>Users</ion-title>
+    </ion-list-header>
+    <ion-item *ngFor="let user of users; index as i">
+      <ion-grid>
+        <ion-row>
+          <ion-col>{{ user.id}}</ion-col>
+          <ion-col><ion-input type="text" color="primary" [(ngModel)]="user.name"
+                              [disabled]="!editUser[i]"></ion-input></ion-col>
+          <ion-col><ion-input type="text" color="primary" [(ngModel)]="user.email"
+                              [disabled]="!editUser[i]"></ion-input></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-label color="medium">Created at: </ion-label>{{ user.createdAt}}
+          </ion-col>
+          <ion-col>
+            <ion-label color="medium">Updated at: </ion-label>{{ user.updatedAt}}
+          </ion-col>
+        </ion-row>
+        <ion-row >
+          <ion-col (click)="showTasksFromUser(i)"><ion-label  color="primary" >Show tasks</ion-label></ion-col>
+          <ion-col (click)="addTask[i] = !addTask[i]"><ion-label  color="primary" >Add task</ion-label></ion-col>
+        </ion-row>
+
+        <ng-container *ngFor="let task of userTasks; index as indexTask" style="display: flex; flex-direction: row;
+        flex-wrap: wrap">
+          <ion-card *ngIf="task.userId === user.id">
+            <ion-card-header>
+              <ion-card-title>{{task.id}}  {{ task.title }}</ion-card-title>
+              <ion-icon name="trash"
+                                                                                      (click)="deleteTask(indexTask)"></ion-icon>
+            </ion-card-header>
+
+            <ion-card-content>
+              {{task.descripition}}
+            </ion-card-content>
+            <ion-card-content>
+              {{ task.status }}
+            </ion-card-content>
+            <ion-card-content>
+              <ion-label color="medium">Created at: {{ task.createdAt }}</ion-label>
+              <ion-label color="medium">Updated at: {{ task.updatedAt }}</ion-label>
+            </ion-card-content>
+          </ion-card>
+        </ng-container>
+      </ion-grid>
+
+      <ion-icon *ngIf="!editUser[i]" name="create" (click)="editUser[i] = !editUser[i]"></ion-icon>
+      <ion-icon *ngIf="editUser[i]" name="thumbs-up" (click)="modifyUser(i)"></ion-icon>
+
+      <ion-card *ngIf="addTask[i]">
+        <ion-card-header>
+          <ion-card-title><ion-input type="text" [(ngModel)]="newTask.title" placeholder="title"></ion-input></ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+            <ion-input type="text" [(ngModel)]="newTask.description" placeholder="description"></ion-input>
+          </ion-card-content>
+          <ion-card-content>
+            <ion-input type="text" [(ngModel)]="newTask.status" placeholder="status"></ion-input>
+            <ion-icon name="thumbs-up" (click)="saveTask(i)">s</ion-icon>
+
+          </ion-card-content>
+      </ion-card>
+    </ion-item>
+
+
+      <ion-item>
+          <ion-label (click)="addUser = !addUser"><ion-icon name="add"></ion-icon>Add User</ion-label>
+      </ion-item>
+    <ion-item *ngIf="addUser">
+      <ion-label>User name:</ion-label>
+      <ion-input type="text" [(ngModel)]="newUser.name"></ion-input>
+      <ion-label>User email:</ion-label>
+      <ion-input type="text" [(ngModel)]="newUser.email"></ion-input>
+      <ion-icon name="thumbs-up" (click)="saveUser()"></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>
