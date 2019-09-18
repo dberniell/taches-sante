@@ -49,7 +49,7 @@
         },
         "post-install-cmd": [
             "@auto-scripts",
-            "php bin/console doctrine:schema:generate",
+            "php bin/console doctrine:schema:create",
             "cd client && npm install"
         ],
         "post-update-cmd": [
