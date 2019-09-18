@@ -3,6 +3,8 @@
 Symfony Api and ionic-angular client
 
 # Installing
+- required mysql, php
+create database and configure .env file with database name, user, password, ...
 
 run in terminal ```composer install```
 
