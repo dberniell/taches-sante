@@ -12,13 +12,16 @@ use App\Controller\ReadUserTasks;
 /**
  * A user.
  *
- * @ApiResource(itemOperations={
- *     "get",
- *     "get_tasks"={
- *         "method"="GET",
- *         "path"="/users/{id}/tasks",
- *         "controller"=ReadUserTasks::class,
- *     }
+ * @ApiResource( collectionOperations={"get", "post"},
+ *      itemOperations={
+*        "get",
+*        "put",
+*       "delete",
+*       "get_tasks"={
+*         "method"="GET",
+*         "path"="/users/{id}/tasks",
+*         "controller"=ReadUserTasks::class,
+*        }
  * })
  *
  * @ORM\Entity
@@ -40,6 +43,13 @@ class User
      * @ORM\Column
      */
     private $name;
+
+    /**
+     * @var string The email of this user.
+     *
+     * @ORM\Column
+     */
+    private $email;
 
     /**
      * @var \DateTimeInterface The date of creation of this user.
@@ -87,6 +97,22 @@ class User
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     */
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
     }
 
     /**
