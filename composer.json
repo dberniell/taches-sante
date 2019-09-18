@@ -48,7 +48,10 @@
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
         "post-install-cmd": [
-            "@auto-scripts"
+            "@auto-scripts",
+            "php bin:/console doctrine:schema:generate",
+            "php bin/console server:run",
+            "cd client && npm install && npm start"
         ],
         "post-update-cmd": [
             "@auto-scripts"

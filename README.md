@@ -9,8 +9,7 @@ run in terminal ```composer install```
 # Launching
 
 * Server Api
-run in terminal ```composer run-script run-server```
+run in terminal ```php bin/console server:run```
 
 * Client
-
-run in terminal ```composer run-script run-client```
+run in terminal ```cd client && npm start```
