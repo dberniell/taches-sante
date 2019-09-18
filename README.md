@@ -4,12 +4,12 @@ Symfony Api and ionic-angular client
 
 # Installing
 
-run in termianl ```composer install```
+run in terminal ```composer install```
 
 # Launching
 
 * Server Api
-run in terminal ````composer run-script run-server```
+run in terminal ```composer run-script run-server```
 
 * Client
 
